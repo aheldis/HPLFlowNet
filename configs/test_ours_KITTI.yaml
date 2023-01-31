@@ -31,6 +31,7 @@ DEVICE: cuda
 
 dataset: KITTI
 remove_ground: True
+data_root: SAVE_PATH
 
 data_process:
   DEPTH_THRESHOLD: 35.

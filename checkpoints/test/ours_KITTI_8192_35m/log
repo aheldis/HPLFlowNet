@@ -1,0 +1,45 @@
+sys.argv:
+main.py configs/test_ours_KITTI.yaml
+NUMBA NUM THREADS	8
+DEVICE               cuda
+allow_less_points    True
+arch                 HPLFlowNet
+batch_size           1
+bcn_use_bias         True
+bcn_use_norm         True
+ckpt_dir             checkpoints/test/ours_KITTI_8192_35m
+data_process         {'DEPTH_THRESHOLD': 35.0, 'NO_CORR': True}
+data_root            SAVE_PATH
+dataset              KITTI
+dim                  3
+evaluate             True
+last_relu            False
+num_points           8192
+print_freq           50
+remove_ground        True
+resume               trained_models/ours.pth.tar
+scales_filter_map    [[3.0, 1, -1, -1], [2.0, 1, -1, -1], [1.0, 1, 1, 1], [0.5, 1, 1, 1], [0.25, 1, 1, 1], [0.125, 1, 1, 1], [0.0625, 1, 1, 1]]
+unsymmetric          True
+use_leaky            True
+workers              8
+
+val_dataset: Dataset KITTI
+    Number of datapoints: 142
+    Number of points per point cloud: 8192
+    is removing ground: True
+    Root Location: SAVE_PATH/KITTI_processed_occ_final
+    Transforms (if any): ProcessData
+                         (data_process_args: 
+                         	DEPTH_THRESHOLD: 35.0
+                         	NO_CORR: True
+                         	allow_less_points: True
+                         	num_points: 8192
+                         )
+
+=>  creating model 'HPLFlowNet'
+=> loading checkpoint 'trained_models/ours.pth.tar'
+=> loaded checkpoint 'trained_models/ours.pth.tar' (start epoch 598, min loss 0.0802982104396658)
+Test: [1/142]	EPE3D 0.0579 (0.0579)	ACC3DS 0.4181 (0.4181)	ACC3DR 0.9491 (0.9491)	Outliers3D 0.7114 (0.7114)	EPE2D 2.1139 (2.1139)	ACC2D 0.8512 (0.8512)
+Test: [51/142]	EPE3D 0.2787 (0.1285)	ACC3DS 0.0294 (0.3451)	ACC3DR 0.3308 (0.7431)	Outliers3D 0.6692 (0.4676)	EPE2D 24.5668 (7.1890)	ACC2D 0.1003 (0.4735)
+Test: [101/142]	EPE3D 0.0486 (0.1463)	ACC3DS 0.8201 (0.3126)	ACC3DR 0.9778 (0.7004)	Outliers3D 0.3418 (0.4973)	EPE2D 2.2461 (29.5866)	ACC2D 0.8475 (0.4479)
+ * EPE3D 0.1372	ACC3DS 0.3163	ACC3DR 0.7104	Outliers3D 0.5201	EPE2D 23.4059	ACC2D 0.4719

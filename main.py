@@ -99,7 +99,7 @@ def main():
     if not args.evaluate:
         init_func = partial(init_weights_multi, init_type=args.init, gain=args.gain)
         model.apply(init_func)
-    logger.log(model)
+    # logger.log(model)
 
     model = torch.nn.DataParallel(model).cuda()
     criterion = EPE3DLoss().cuda()
