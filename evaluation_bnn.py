@@ -69,8 +69,9 @@ def evaluate(val_loader, model, logger, args):
             else:
                 epsilon = args.epsilon / args.iters
                 pgd_iters = args.iters
-            
-            for iter in range(pgd_iters):
+
+            ori = pc1.data
+            for itr in range(pgd_iters):
                 epe = torch.sum((output - sf)**2, dim=0).sqrt().view(-1)
                 model.zero_grad()
                 epe.mean().backward()
@@ -80,6 +81,7 @@ def evaluate(val_loader, model, logger, args):
                     pc1.data = fgsm_attack(pc1, epsilon, data_grad)
                 else:
                     pc1.data[:, args.channel, :] = fgsm_attack(pc1, epsilon, data_grad)[:, args.channel, :]
+                pc1.data = ori + torch.clamp(pc1.data - ori, -args.epsilon, args.epsilon)
                 output = model(pc1, pc2, generated_data)
         # end attack
 
