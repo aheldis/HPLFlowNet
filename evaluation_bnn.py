@@ -79,7 +79,7 @@ def evaluate(val_loader, model, logger, args):
                 if args.channel == -1:
                     pc1.data = fgsm_attack(pc1, epsilon, data_grad)
                 else:
-                    pc1.data[:, args.channel, :, :] = fgsm_attack(pc1, epsilon, data_grad)[:, args.channel, :, :]
+                    pc1.data[:, args.channel, :] = fgsm_attack(pc1, epsilon, data_grad)[:, args.channel, :]
                 output = model(pc1, pc2, generated_data)
         # end attack
 
