@@ -10,7 +10,8 @@ import time
 import torch
 
 import numba
-from numba import njit, cffi_support
+from numba import njit
+from numba.core.typing import cffi_utils as cffi_support
 
 from . import functional as F
 
