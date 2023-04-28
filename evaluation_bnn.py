@@ -57,17 +57,30 @@ def evaluate(val_loader, model, logger, args):
         pc1, pc2, sf, generated_data, path = items
         sf = sf.cuda()
 
-        pc1.requires_grad = True # for attack
+        if args.attack_type != 'None':
+            pc1.requires_grad = True # for attack
         output = model(pc1, pc2, generated_data)
 
         # start attack
-        # print(output.get_device(), sf.get_device())
-        epe = torch.sum((output - sf)**2, dim=0).sqrt().view(-1)
-        model.zero_grad()
-        epe.mean().backward()
-        data_grad = pc1.grad.data
-        pc1.data[:, 2, :] = fgsm_attack(pc1, 2, data_grad)[:, 2, :]
-        output = model(pc1, pc2, generated_data)
+        if args.attack_type != 'None':
+            if args.attack_type == 'FGSM':
+                epsilon = args.epsilon
+                pgd_iters = 1
+            else:
+                epsilon = args.epsilon / args.iters
+                pgd_iters = args.iters
+            
+            for iter in range(pgd_iters):
+                epe = torch.sum((output - sf)**2, dim=0).sqrt().view(-1)
+                model.zero_grad()
+                epe.mean().backward()
+                data_grad = pc1.grad.data
+        
+                if args.channel == -1:
+                    pc1.data = fgsm_attack(pc1, epsilon, data_grad)
+                else:
+                    pc1.data[:, args.channel, :, :] = fgsm_attack(pc1, epsilon, data_grad)[:, args.channel, :, :]
+                output = model(pc1, pc2, generated_data)
         # end attack
 
         pc1_np = pc1.detach().numpy()
