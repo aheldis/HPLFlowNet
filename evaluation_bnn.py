@@ -67,7 +67,7 @@ def evaluate(val_loader, model, logger, args):
                 epsilon = args.epsilon
                 pgd_iters = 1
             else:
-                epsilon = args.epsilon / args.iters
+                epsilon = 2.5 * args.epsilon / args.iters
                 pgd_iters = args.iters
 
             ori = pc1.data
