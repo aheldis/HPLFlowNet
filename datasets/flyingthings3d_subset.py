@@ -20,8 +20,7 @@ class FlyingThings3DSubset(data.Dataset):
                  transform,
                  gen_func,
                  args):
-        # self.root = osp.join(args.data_root, 'FlyingThings3D_subset_processed_35m')
-        self.root = osp.join(args.data_root, 'data_processed_maxcut_35_20k_2k_8192')
+        self.root = osp.join(args.data_root, 'FlyingThings3D_subset_processed_35m')
         self.train = train
         self.transform = transform
         self.gen_func = gen_func
