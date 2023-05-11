@@ -2,23 +2,13 @@
 This is the code for [HPLFlowNet](https://web.cs.ucdavis.edu/~yjlee/projects/cvpr2019-HPLFlowNet.pdf), a hierarchical permutohedral lattice flownet for scene flow estimation on large-scale point clouds. The code is developed and maintained by Xiuye Gu.
 
 ## Prerequisites
-Our model is trained and tested under:
-* Python 3.5.2 (testing under Python 3.6.5 also works)
-* NVIDIA GPU + CUDA CuDNN
-* PyTorch (torch == 0.4.0) (Should also support PyTorch 1.0 now)
-* Numba (numba == 0.38.1)
-* You may need to install cffi.
-* Mayavi for visualization. 
-
 * Installation on Ubuntu:
 ```bash
-pip3 install https://download.pytorch.org/whl/cu90/torch-0.4.0-cp35-cp35m-linux_x86_64.whl
-pip3 install numba
-pip3 install cffi
-sudo apt-get -y install python-vtk
-sudo pip3 install mayavi
-sudo apt-get install python3-pyqt5
-sudo pip3 install PyQt5
+conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=10.2 -c pytorch
+!pip install numba
+!pip install cffi
+!pip install Mayavi 
+!pip install pypng
 ```
 
 ## Data preprocess
