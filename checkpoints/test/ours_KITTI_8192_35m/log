@@ -43,5 +43,5 @@ val_dataset: Dataset KITTI
 =>  creating model 'HPLFlowNet'
 => loading checkpoint 'trained_models/ours.pth.tar'
 => loaded checkpoint 'trained_models/ours.pth.tar' (start epoch 598, min loss 0.0802982104396658)
-Test: [1/142]	EPE3D 0.1239 (0.1239)	ACC3DS 0.0110 (0.0110)	ACC3DR 0.2421 (0.2421)	Outliers3D 0.9987 (0.9987)	EPE2D 5.4597 (5.4597)	ACC2D 0.2134 (0.2134)
- * EPE3D 0.1247	ACC3DS 0.0181	ACC3DR 0.3884	Outliers3D 0.8600	EPE2D 4.0419	ACC2D 0.4621
+Test: [1/142]	EPE3D 0.0941 (0.0941)	ACC3DS 0.0127 (0.0127)	ACC3DR 0.7134 (0.7134)	Outliers3D 0.9858 (0.9858)	EPE2D 3.7161 (3.7161)	ACC2D 0.3634 (0.3634)
+ * EPE3D 0.1785	ACC3DS 0.0468	ACC3DR 0.3981	Outliers3D 0.8121	EPE2D 11.1154	ACC2D 0.2249

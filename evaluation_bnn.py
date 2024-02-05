@@ -11,7 +11,7 @@ from main_utils import *
 from utils import geometry
 from evaluation_utils import evaluate_2d, evaluate_3d
 
-TOTAL_NUM_SAMPLES = 2
+TOTAL_NUM_SAMPLES = 5
 
 
 def fgsm_attack(image, epsilon, data_grad):
