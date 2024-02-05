@@ -5,12 +5,12 @@ This is the code for [HPLFlowNet](https://web.cs.ucdavis.edu/~yjlee/projects/cvp
 * Installation on Ubuntu:
 ```bash
 conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=10.2 -c pytorch
-!pip install numba
-!pip install cffi
-!pip install Mayavi 
-!pip install pypng
-!sudo apt-get install python3-pyqt5
-!pip install PyQt5
+pip install numba
+pip install cffi
+pip install Mayavi 
+pip install pypng
+sudo apt-get install python3-pyqt5
+pip install PyQt5
 ```
 
 ## Data preprocess
