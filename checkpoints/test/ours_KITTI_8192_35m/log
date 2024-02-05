@@ -8,7 +8,7 @@ attack_type          PGD
 batch_size           1
 bcn_use_bias         True
 bcn_use_norm         True
-channel              0
+channel              2
 ckpt_dir             checkpoints/test/ours_KITTI_8192_35m
 data_process         {'DEPTH_THRESHOLD': 35.0, 'NO_CORR': True}
 data_root            SAVE_PATH
@@ -43,5 +43,5 @@ val_dataset: Dataset KITTI
 =>  creating model 'HPLFlowNet'
 => loading checkpoint 'trained_models/ours.pth.tar'
 => loaded checkpoint 'trained_models/ours.pth.tar' (start epoch 598, min loss 0.0802982104396658)
-Test: [1/142]	EPE3D 0.0560 (0.0560)	ACC3DS 0.5094 (0.5094)	ACC3DR 0.9504 (0.9504)	Outliers3D 0.7094 (0.7094)	EPE2D 2.0172 (2.0172)	ACC2D 0.8690 (0.8690)
- * EPE3D 0.1295	ACC3DS 0.2524	ACC3DR 0.7654	Outliers3D 0.5712	EPE2D 6.0508	ACC2D 0.4236
+Test: [1/142]	EPE3D 0.0595 (0.0595)	ACC3DS 0.3961 (0.3961)	ACC3DR 0.9158 (0.9158)	Outliers3D 0.7726 (0.7726)	EPE2D 2.3268 (2.3268)	ACC2D 0.8195 (0.8195)
+ * EPE3D 0.1310	ACC3DS 0.2337	ACC3DR 0.7575	Outliers3D 0.5560	EPE2D 33.3479	ACC2D 0.4255

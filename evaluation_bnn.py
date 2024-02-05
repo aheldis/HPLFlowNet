@@ -136,10 +136,10 @@ def evaluate(val_loader, model, logger, args):
                                 ))
 
 
-        np.save(osp.join(save_dir, 'pc1_' + str(save_idx) + '.npy'), pc1_np)
-        np.save(osp.join(save_dir, 'sf_' + str(save_idx) + '.npy'), sf_np)
-        np.save(osp.join(save_dir, 'output_' + str(save_idx) + '.npy'), output_np)
-        np.save(osp.join(save_dir, 'pc2_' + str(save_idx) + '.npy'), pc2_np)
+        # np.save(osp.join(save_dir, 'pc1_' + str(save_idx) + '.npy'), pc1_np)
+        # np.save(osp.join(save_dir, 'sf_' + str(save_idx) + '.npy'), sf_np)
+        np.save(osp.join(save_dir, 'pgd_2_' + str(save_idx) + '.npy'), output_np)
+        # np.save(osp.join(save_dir, 'pc2_' + str(save_idx) + '.npy'), pc2_np)
         epe3d_list.append(EPE3D)
         path_list.extend(path)
         save_idx += 1
