@@ -11,7 +11,7 @@ from main_utils import *
 from utils import geometry
 from evaluation_utils import evaluate_2d, evaluate_3d
 
-TOTAL_NUM_SAMPLES = 1
+TOTAL_NUM_SAMPLES = 2
 
 
 def fgsm_attack(image, epsilon, data_grad):
@@ -34,6 +34,7 @@ def evaluate(val_loader, model, logger, args):
 
             sep = len(val_loader) // num_sampled_batches
             sampled_batch_indices = list(range(len(val_loader)))[::sep]
+            print(sampled_batch_indices)
         else:
             sampled_batch_indices = range(len(val_loader))
 
