@@ -11,7 +11,7 @@ from main_utils import *
 from utils import geometry
 from evaluation_utils import evaluate_2d, evaluate_3d
 
-TOTAL_NUM_SAMPLES = 0
+TOTAL_NUM_SAMPLES = 1
 
 
 def fgsm_attack(image, epsilon, data_grad):
@@ -54,6 +54,9 @@ def evaluate(val_loader, model, logger, args):
 
     # with torch.no_grad():
     for i, items in enumerate(val_loader):
+        if i not in sampled_batch_indices:
+          continue 
+          
         pc1, pc2, sf, generated_data, path = items
         sf = sf.cuda()
 
@@ -131,14 +134,14 @@ def evaluate(val_loader, model, logger, args):
                                 acc2d_=acc2ds,
                                 ))
 
-        if i in sampled_batch_indices:
-            np.save(osp.join(save_dir, 'pc1_' + str(save_idx) + '.npy'), pc1_np)
-            np.save(osp.join(save_dir, 'sf_' + str(save_idx) + '.npy'), sf_np)
-            np.save(osp.join(save_dir, 'output_' + str(save_idx) + '.npy'), output_np)
-            np.save(osp.join(save_dir, 'pc2_' + str(save_idx) + '.npy'), pc2_np)
-            epe3d_list.append(EPE3D)
-            path_list.extend(path)
-            save_idx += 1
+
+        np.save(osp.join(save_dir, 'pc1_' + str(save_idx) + '.npy'), pc1_np)
+        np.save(osp.join(save_dir, 'sf_' + str(save_idx) + '.npy'), sf_np)
+        np.save(osp.join(save_dir, 'output_' + str(save_idx) + '.npy'), output_np)
+        np.save(osp.join(save_dir, 'pc2_' + str(save_idx) + '.npy'), pc2_np)
+        epe3d_list.append(EPE3D)
+        path_list.extend(path)
+        save_idx += 1
         del pc1, pc2, sf, generated_data
 
     if len(path_list) > 0:
