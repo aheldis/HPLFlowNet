@@ -43,7 +43,7 @@ workers: 8
 attack_type: PGD
 iters: 10
 epsilon: 2
-channel: 2
+channel: -1
 
 
 
