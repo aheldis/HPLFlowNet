@@ -40,10 +40,10 @@ data_process:
 print_freq: 50
 workers: 8
 
-attack_type: FGSM
+attack_type: PGD
 iters: 10
 epsilon: 2
-channel: -1
+channel: 0
 
 
 
