@@ -63,6 +63,9 @@ def evaluate(val_loader, model, logger, args):
             pc1.requires_grad = True # for attack
         output = model(pc1, pc2, generated_data)
 
+        unattacked_output_np = output.cpu().detach().numpy()
+        unattacked_output_np = unattacked_output_np.transpose((0,2,1))
+
         # start attack
         if args.attack_type != 'None':
             if args.attack_type == 'FGSM':
@@ -135,7 +138,7 @@ def evaluate(val_loader, model, logger, args):
 
         if i in sampled_batch_indices:
             np.save(osp.join(save_dir, 'pc1_' + str(save_idx) + '.npy'), pc1_np)
-            np.save(osp.join(save_dir, 'sf_' + str(save_idx) + '.npy'), sf_np)
+            np.save(osp.join(save_dir, 'unattacked_sf_' + str(save_idx) + '.npy'), unattacked_output_np)
             np.save(osp.join(save_dir, 'pgd_2_' + str(save_idx) + '.npy'), output_np)
             np.save(osp.join(save_dir, 'pc2_' + str(save_idx) + '.npy'), pc2_np)
             
