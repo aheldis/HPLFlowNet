@@ -55,6 +55,9 @@ def evaluate(val_loader, model, logger, args):
 
     # with torch.no_grad():
     for i, items in enumerate(val_loader): 
+
+        # if i not in sampled_batch_indices:
+        #   continue
           
         pc1, pc2, sf, generated_data, path = items
         sf = sf.cuda()
@@ -139,7 +142,7 @@ def evaluate(val_loader, model, logger, args):
         if i in sampled_batch_indices:
             np.save(osp.join(save_dir, 'pc1_' + str(save_idx) + '.npy'), pc1_np)
             np.save(osp.join(save_dir, 'unattacked_sf_' + str(save_idx) + '.npy'), unattacked_output_np)
-            np.save(osp.join(save_dir, 'pgd_2_' + str(save_idx) + '.npy'), output_np)
+            np.save(osp.join(save_dir, 'pgd_all_' + str(save_idx) + '.npy'), output_np)
             np.save(osp.join(save_dir, 'pc2_' + str(save_idx) + '.npy'), pc2_np)
             
         epe3d_list.append(EPE3D)
