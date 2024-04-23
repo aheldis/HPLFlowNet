@@ -71,14 +71,22 @@ def evaluate(val_loader, model, logger, args):
 
         # start attack
         if args.attack_type != 'None':
-            if args.attack_type == 'FGSM':
+            ori = pc1.data
+            if args.attack_type == "RAND":
+                epsilon = args.epsilon
+                shape = pc1.shape
+                delta = (np.random.rand(np.product(shape)).reshape(shape) - 0.5) * 2 * epsilon
+                pc1.data = ori + torch.from_numpy(delta).type(torch.float).cuda()
+                pc1.data = torch.clamp(pc1.data, 0.0, 255.0)
+                output = model(pc1, pc2, generated_data)
+                pgd_iters = 0
+            elif args.attack_type == 'FGSM':
                 epsilon = args.epsilon
                 pgd_iters = 1
             else:
                 epsilon = 2.5 * args.epsilon / args.iters
                 pgd_iters = args.iters
 
-            ori = pc1.data
             for itr in range(pgd_iters):
                 epe = torch.sum((output - sf)**2, dim=0).sqrt().view(-1)
                 model.zero_grad()
